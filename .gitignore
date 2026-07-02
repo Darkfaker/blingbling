@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build output
+dist/
+build/
+miniprogram_npm/
+.taro_cache/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# IDE / Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Taro / WeChat mini-program
+.project
+.project.tmp
+*.wxapkg
+
+# Misc
+.cache/
+coverage/
+.tmp/
