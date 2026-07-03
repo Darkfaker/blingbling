@@ -1,11 +1,214 @@
-.hero { display: flex; flex-direction: column; padding: 36px 4px 18px; }
-.eyebrow { color: var(--primary); font-size: 22px; font-weight: 700; letter-spacing: 3px; }
-.title { margin: 12px 0 8px; font-size: 52px; font-weight: 750; }
-.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.tool-card { display: flex; min-height: 210px; flex-direction: column; }
-.tool-icon, .recent-icon { display: flex; width: 64px; height: 64px; align-items: center; justify-content: center; margin-bottom: 22px; border-radius: 18px; background: #edf3ff; color: var(--primary); font-size: 36px; font-weight: 700; }
-.tool-title { display: block; font-size: 32px; font-weight: 650; }
-.tool-description { display: block; margin-top: 9px; color: var(--muted); font-size: 24px; line-height: 1.45; }
-.recent { display: flex; align-items: center; }
-.recent .recent-icon { flex: 0 0 auto; margin: 0 24px 0 0; }
-.settings-link { padding: 50px 0; text-align: center; color: var(--muted); font-size: 26px; }
+.home-page { padding-top: 24rpx; }
+
+/* ===== Hero ===== */
+.hero {
+  position: relative;
+  margin: 0 0 8rpx;
+  padding: 40rpx 36rpx 36rpx;
+  border-radius: 36rpx;
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 55%, #ec4899 110%);
+  color: #ffffff;
+  overflow: hidden;
+  box-shadow: 0 24rpx 48rpx -12rpx rgba(79, 70, 229, 0.42);
+}
+.hero-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24rpx;
+}
+.hero-orb {
+  flex: 0 0 120rpx;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 70%);
+  position: relative;
+}
+.hero-orb::before {
+  content: '';
+  position: absolute;
+  inset: -28rpx;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 60%);
+  pointer-events: none;
+}
+.hero-eyebrow {
+  display: block;
+  font-size: 22rpx;
+  font-weight: 600;
+  letter-spacing: 2rpx;
+  opacity: 0.75;
+  text-transform: uppercase;
+}
+.hero-greeting {
+  display: block;
+  margin-top: 12rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+  opacity: 0.9;
+}
+.hero-title {
+  display: block;
+  margin-top: 6rpx;
+  font-size: 46rpx;
+  font-weight: 700;
+  letter-spacing: 1rpx;
+  line-height: 1.25;
+}
+.hero-stats {
+  display: flex;
+  align-items: center;
+  margin-top: 32rpx;
+  padding: 20rpx 24rpx;
+  border-radius: 24rpx;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(20rpx);
+}
+.stat { flex: 1; display: flex; flex-direction: column; align-items: center; }
+.stat-num { font-size: 36rpx; font-weight: 700; line-height: 1.1; }
+.stat-label { margin-top: 4rpx; font-size: 22rpx; opacity: 0.78; }
+.stat-divider { width: 1rpx; height: 40rpx; background: rgba(255, 255, 255, 0.28); }
+
+/* ===== Recent ===== */
+.recent-card {
+  display: flex !important;
+  align-items: center;
+  padding: 28rpx 28rpx !important;
+  color: #ffffff;
+  border: 0 !important;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+.recent-card::after {
+  content: '';
+  position: absolute;
+  right: -60rpx;
+  top: -60rpx;
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+}
+.recent-icon {
+  flex: 0 0 96rpx;
+  width: 96rpx;
+  height: 96rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 28rpx;
+  background: rgba(255, 255, 255, 0.22);
+  margin-right: 24rpx;
+  font-size: 44rpx;
+  font-weight: 700;
+  position: relative;
+  z-index: 1;
+}
+.recent-body { flex: 1; min-width: 0; position: relative; z-index: 1; }
+.recent-title { display: block; font-size: 34rpx; font-weight: 700; }
+.recent-desc { display: block; margin-top: 6rpx; font-size: 24rpx; opacity: 0.85; }
+.recent-cta {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  padding: 12rpx 22rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.22);
+  font-size: 24rpx;
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+}
+.recent-cta-arrow { font-size: 28rpx; line-height: 1; }
+
+/* ===== Tool grid ===== */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20rpx;
+}
+.tool-card {
+  position: relative;
+  display: flex !important;
+  flex-direction: column;
+  min-height: 240rpx;
+  padding: 28rpx !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.tool-card--hover {
+  transform: translateY(-2rpx);
+  box-shadow: 0 16rpx 36rpx -12rpx rgba(15, 23, 42, 0.18), 0 4rpx 10rpx rgba(15, 23, 42, 0.06);
+}
+.tool-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 24rpx;
+  margin-bottom: 24rpx;
+  color: #ffffff;
+  font-size: 40rpx;
+  font-weight: 700;
+  box-shadow: 0 8rpx 18rpx -6rpx rgba(15, 23, 42, 0.18);
+}
+.tool-meta { flex: 1; }
+.tool-headline { display: flex; align-items: center; gap: 12rpx; }
+.tool-title { font-size: 32rpx; font-weight: 700; color: var(--text); }
+.tool-badge {
+  padding: 2rpx 12rpx;
+  border-radius: 999rpx;
+  background: var(--warning-50);
+  color: var(--warning);
+  font-size: 20rpx;
+  font-weight: 700;
+  letter-spacing: 0.5rpx;
+}
+.tool-description {
+  display: block;
+  margin-top: 8rpx;
+  color: var(--muted);
+  font-size: 24rpx;
+  line-height: 1.45;
+}
+.tool-arrow {
+  position: absolute;
+  top: 24rpx;
+  right: 24rpx;
+  width: 36rpx;
+  height: 36rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--surface-soft);
+  color: var(--muted);
+  font-size: 28rpx;
+  line-height: 1;
+}
+
+/* ===== Footer ===== */
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18rpx;
+  margin-top: 64rpx;
+  padding-bottom: 24rpx;
+}
+.footer-pill {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  padding: 16rpx 32rpx;
+  border-radius: 999rpx;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  color: var(--text-soft);
+  font-size: 26rpx;
+  font-weight: 500;
+}
+.footer-pill-icon { font-size: 28rpx; color: var(--muted); }
+.footer-version { font-size: 22rpx; color: var(--muted-2); }

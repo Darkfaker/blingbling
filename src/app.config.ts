@@ -3,10 +3,12 @@ import { appPages } from './routes'
 export default defineAppConfig({
   pages: [...appPages],
   window: {
-    navigationBarBackgroundColor: '#f7f8fa',
+    navigationBarBackgroundColor: '#ffffff',
     navigationBarTextStyle: 'black',
     navigationBarTitleText: 'BBL 工具箱',
-    backgroundColor: '#f7f8fa',
+    backgroundColor: '#f4f5fb',
+    backgroundTextStyle: 'dark',
+    enablePullDownRefresh: false,
   },
   lazyCodeLoading: 'requiredComponents',
 })

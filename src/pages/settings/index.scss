@@ -1,0 +1,80 @@
+.settings-page { padding-top: 24rpx; }
+
+/* ===== Hero ===== */
+.settings-hero {
+  display: flex !important;
+  align-items: center;
+  gap: 24rpx;
+  padding: 32rpx !important;
+  background: linear-gradient(135deg, #1f2937 0%, #334155 100%) !important;
+  color: #ffffff;
+  border: 0 !important;
+  box-shadow: 0 16rpx 36rpx -12rpx rgba(15, 23, 42, 0.3) !important;
+}
+.settings-hero-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 28rpx;
+  background: rgba(255, 255, 255, 0.18);
+  font-size: 48rpx;
+}
+.settings-hero-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4rpx; }
+.settings-hero-title { font-size: 36rpx; font-weight: 700; }
+.settings-hero-sub { font-size: 24rpx; opacity: 0.78; }
+
+/* ===== Privacy card ===== */
+.settings-card { padding: 24rpx 28rpx !important; }
+.settings-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16rpx;
+  padding: 12rpx 0;
+}
+.settings-bullet {
+  flex: 0 0 12rpx;
+  width: 12rpx;
+  height: 12rpx;
+  margin-top: 16rpx;
+  border-radius: 50%;
+  background: var(--primary-grad);
+}
+.settings-row-text { flex: 1; font-size: 26rpx; line-height: 1.6; color: var(--text-soft); }
+
+/* ===== Danger button ===== */
+.settings-page .danger-button { height: 96rpx; line-height: 96rpx; margin: 0; }
+.action--hover { transform: scale(0.98); }
+
+/* ===== Version card ===== */
+.settings-version-card {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28rpx 32rpx !important;
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
+  color: #ffffff;
+  border: 0 !important;
+  box-shadow: 0 16rpx 36rpx -12rpx rgba(79, 70, 229, 0.4) !important;
+}
+.settings-version-card > View { display: flex; flex-direction: column; gap: 4rpx; }
+.settings-version-name { font-size: 32rpx; font-weight: 700; }
+.settings-version-tag {
+  display: inline-block;
+  margin-top: 4rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  font-size: 20rpx;
+  font-weight: 600;
+  letter-spacing: 1rpx;
+  align-self: flex-start;
+}
+.settings-version-num {
+  font-size: 36rpx;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.95;
+}
