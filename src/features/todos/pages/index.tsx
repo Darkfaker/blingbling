@@ -5,6 +5,8 @@ import { createTodo, sortTodos, validateTitle, type Todo } from '../model'
 import { createTodoRepository } from '../repository'
 import { StateView } from '@/shared/ui/StateView'
 import { toAppError } from '@/shared/observability/AppError'
+import { Icon } from '@/components/Icon'
+import { Cloud, Horizon } from '@/components/Decor'
 import './index.scss'
 
 const formatTime = (timestamp: number): string => {
@@ -70,7 +72,7 @@ export default function TodosPage() {
   }
 
   const remove = async (todo: Todo) => {
-    const confirm = await Taro.showModal({ title: '删除待办？', content: todo.title, confirmColor: '#e11d48' })
+    const confirm = await Taro.showModal({ title: '删除待办？', content: todo.title, confirmColor: '#E85D75' })
     if (!confirm.confirm) return
     try {
       await repository.remove(todo.id)
@@ -92,29 +94,42 @@ export default function TodosPage() {
         </View>
       ) : null}
 
+      {/* 顶部统计卡 */}
       <View className='todos-summary card'>
-        <View className='todos-summary-left'>
-          <Text className='todos-summary-num'>{remaining}</Text>
-          <Text className='todos-summary-label'>{remaining === 0 ? '已全部完成' : '件待办'}</Text>
+        <View className='todos-summary-bg'>
+          <Cloud size={140} className='todos-summary-cloud todos-summary-cloud--1' />
+          <Cloud size={100} className='todos-summary-cloud todos-summary-cloud--2' />
         </View>
-        <View className='todos-summary-right'>
-          <View className='todos-progress'>
-            <View
-              className='todos-progress-bar'
-              style={{ width: items.length === 0 ? '0%' : `${Math.round((done / items.length) * 100)}%` }}
-            />
+        <View className='todos-summary-content'>
+          <View className='todos-summary-left'>
+            <Text className='todos-summary-num'>{remaining}</Text>
+            <Text className='todos-summary-label'>{remaining === 0 ? '今日已清空' : '件待办'}</Text>
           </View>
-          <Text className='todos-progress-text'>已完成 {done} / {items.length}</Text>
+          <View className='todos-summary-right'>
+            <View className='todos-progress'>
+              <View
+                className='todos-progress-bar'
+                style={{ width: items.length === 0 ? '0%' : `${Math.round((done / items.length) * 100)}%` }}
+              />
+            </View>
+            <Text className='todos-progress-text'>已完成 {done} / {items.length}</Text>
+          </View>
+        </View>
+        <View className='todos-summary-sticker'>
+          <Icon name='icon-feather' size={32} className='todos-summary-feather' />
         </View>
       </View>
 
+      {/* 输入行 */}
       <View className={`add-row card ${focused ? 'is-focused' : ''}`}>
-        <View className='add-icon'>＋</View>
+        <View className='add-icon'>
+          <Text className='add-icon-text'>＋</Text>
+        </View>
         <Input
           className='todo-input'
           maxlength={120}
           value={title}
-          placeholder='记下一件事，回车添加'
+          placeholder='把今早想到的那件事记下来…'
           placeholderClass='todo-input-placeholder'
           onInput={(e) => setTitle(e.detail.value)}
           confirmType='done'
@@ -128,7 +143,7 @@ export default function TodosPage() {
           disabled={saving || !title.trim()}
           onClick={save}
         >
-          添加
+          写下
         </Button>
       </View>
 
@@ -140,9 +155,14 @@ export default function TodosPage() {
         <StateView kind='error' message={error} onRetry={load} />
       ) : items.length === 0 ? (
         <View className='empty card'>
-          <Text className='empty-icon'>✓</Text>
-          <Text className='empty-title'>清单很干净</Text>
-          <Text className='empty-desc'>把今天想做的事写下来，专注完成每一件。</Text>
+          <View className='empty-icon'>
+            <Text>✓</Text>
+          </View>
+          <Text className='empty-title'>清晨的清单很安静</Text>
+          <Text className='empty-desc'>写下第一件事，晨光就开始工作了</Text>
+          <View className='empty-horizon'>
+            <Horizon />
+          </View>
         </View>
       ) : (
         <View className='todo-list'>
@@ -154,19 +174,18 @@ export default function TodosPage() {
             >
               <View
                 className={`check ${todo.completed ? 'is-done' : ''}`}
-                onClick={() => void update(todo)}
                 hoverClass='check--hover'
-                hoverStayTime={50}
+                onClick={() => void update(todo)}
               >
                 {todo.completed ? <Text className='check-mark'>✓</Text> : null}
               </View>
-              <View className='todo-body' onClick={() => void update(todo)}>
-                <Text className={todo.completed ? 'todo-title is-done' : 'todo-title'}>{todo.title}</Text>
-                <Text className='todo-meta'>{formatTime(todo.createdAt)} 添加</Text>
+              <View className='todo-body'>
+                <Text className={`todo-title ${todo.completed ? 'is-done' : ''}`}>{todo.title}</Text>
+                <Text className='todo-meta'>{formatTime(todo.updatedAt)}</Text>
               </View>
               <View className='todo-actions'>
-                <View className='delete' onClick={() => void remove(todo)} hoverClass='delete--hover' hoverStayTime={50}>
-                  <Text>删除</Text>
+                <View className='delete' hoverClass='delete--hover' onClick={() => void remove(todo)}>
+                  <Text>删掉</Text>
                 </View>
               </View>
             </View>
