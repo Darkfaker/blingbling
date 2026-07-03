@@ -1,0 +1,11 @@
+.hero { display: flex; flex-direction: column; padding: 36px 4px 18px; }
+.eyebrow { color: var(--primary); font-size: 22px; font-weight: 700; letter-spacing: 3px; }
+.title { margin: 12px 0 8px; font-size: 52px; font-weight: 750; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.tool-card { display: flex; min-height: 210px; flex-direction: column; }
+.tool-icon, .recent-icon { display: flex; width: 64px; height: 64px; align-items: center; justify-content: center; margin-bottom: 22px; border-radius: 18px; background: #edf3ff; color: var(--primary); font-size: 36px; font-weight: 700; }
+.tool-title { display: block; font-size: 32px; font-weight: 650; }
+.tool-description { display: block; margin-top: 9px; color: var(--muted); font-size: 24px; line-height: 1.45; }
+.recent { display: flex; align-items: center; }
+.recent .recent-icon { flex: 0 0 auto; margin: 0 24px 0 0; }
+.settings-link { padding: 50px 0; text-align: center; color: var(--muted); font-size: 26px; }

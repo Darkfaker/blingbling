@@ -1,0 +1,55 @@
+{
+  "name": "bbl-wechat-toolbox",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A small, reliable personal toolbox for WeChat",
+  "scripts": {
+    "dev:weapp": "taro build --type weapp --watch",
+    "build:weapp": "taro build --type weapp",
+    "create:tool": "node --import tsx scripts/create-tool.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "validate": "node --import tsx scripts/validate-manifests.ts",
+    "check": "tsc --noEmit && eslint . && vitest run && node --import tsx scripts/validate-manifests.ts && taro build --type weapp"
+  },
+  "dependencies": {
+    "@tarojs/components": "4.2.0",
+    "@tarojs/helper": "4.2.0",
+    "@tarojs/plugin-framework-react": "4.2.0",
+    "@tarojs/plugin-platform-weapp": "4.2.0",
+    "@tarojs/react": "4.2.0",
+    "@tarojs/runtime": "4.2.0",
+    "@tarojs/shared": "4.2.0",
+    "@tarojs/taro": "4.2.0",
+    "qrcode-generator": "1.4.4",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@babel/preset-react": "7.29.7",
+    "@eslint/js": "9.39.1",
+    "@tarojs/cli": "4.2.0",
+    "@tarojs/taro-loader": "4.2.0",
+    "@tarojs/webpack5-runner": "4.2.0",
+    "@types/node": "22.15.0",
+    "@types/react": "18.3.20",
+    "@types/react-dom": "18.3.6",
+    "@typescript-eslint/eslint-plugin": "8.57.0",
+    "@typescript-eslint/parser": "8.57.0",
+    "babel-preset-taro": "4.2.0",
+    "eslint": "9.39.1",
+    "eslint-plugin-react-hooks": "7.0.1",
+    "sass": "1.86.3",
+    "style-loader": "4.0.0",
+    "tsx": "4.21.0",
+    "typescript": "5.8.3",
+    "vite": "7.3.6",
+    "vitest": "4.1.9"
+  },
+  "packageManager": "pnpm@11.7.0",
+  "engines": {
+    "node": ">=20"
+  }
+}

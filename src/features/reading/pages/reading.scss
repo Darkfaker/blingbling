@@ -1,0 +1,11 @@
+.reading-filter { display: flex; gap: 34px; margin-bottom: 24px; color: var(--muted); }
+.reading-filter .active { color: var(--primary); font-weight: 650; }
+.article-list { display: flex; flex-direction: column; gap: 18px; }
+.article-source { color: var(--primary); font-size: 22px; font-weight: 650; text-transform: uppercase; }
+.article-title { display: block; margin-top: 12px; font-size: 32px; font-weight: 650; line-height: 1.4; }
+.article-summary { display: -webkit-box; margin-top: 12px; overflow: hidden; color: var(--muted); font-size: 25px; line-height: 1.5; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.detail-card { margin-bottom: 24px; }
+.detail-title { display: block; margin: 18px 0 30px; font-size: 42px; font-weight: 700; line-height: 1.4; }
+.detail-summary { display: block; font-size: 29px; line-height: 1.75; }
+.detail-note { display: block; margin-top: 36px; font-size: 23px; line-height: 1.6; }
+.page > button { margin-top: 20px; }

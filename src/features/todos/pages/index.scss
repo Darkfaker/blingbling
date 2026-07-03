@@ -1,0 +1,11 @@
+.local-banner { margin-bottom: 20px; padding: 18px 22px; border-radius: 16px; background: #fff7db; color: #765b00; font-size: 23px; line-height: 1.45; }
+.add-row { display: flex; align-items: center; gap: 18px; }
+.todo-input { flex: 1; min-width: 0; }
+.add-button { width: 150px; margin: 0; }
+.todo-list { display: flex; flex-direction: column; gap: 16px; }
+.todo-row { display: flex; align-items: center; }
+.check { display: flex; width: 44px; height: 44px; flex: 0 0 auto; align-items: center; justify-content: center; border: 3px solid #cbd2dc; border-radius: 50%; color: white; font-size: 26px; }
+.check.done { border-color: var(--primary); background: var(--primary); }
+.todo-title { flex: 1; margin: 0 20px; }
+.todo-title.completed { color: var(--muted); text-decoration: line-through; }
+.delete { color: var(--danger); font-size: 24px; }

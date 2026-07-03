@@ -1,0 +1,8 @@
+.qr-input { width: 100%; min-height: 180px; font-size: 28px; }
+.byte-count { display: block; text-align: right; color: var(--muted); font-size: 22px; }
+.byte-count.over { color: var(--danger); }
+.canvas-wrap { position: relative; display: flex; width: 640px; height: 640px; align-items: center; justify-content: center; margin: 40px auto; background: white; border-radius: 24px; overflow: hidden; }
+.qr-canvas { width: 640px; height: 640px; }
+.qr-placeholder { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: white; color: var(--muted); font-size: 26px; }
+.qr-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.qr-tip { display: block; margin-top: 30px; text-align: center; font-size: 24px; }

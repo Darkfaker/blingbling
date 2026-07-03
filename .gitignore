@@ -8,6 +8,8 @@ dist/
 build/
 miniprogram_npm/
 .taro_cache/
+.swc/
+.pnpm-store/
 
 # Logs
 npm-debug.log*
@@ -28,13 +30,19 @@ pnpm-debug.log*
 
 # Env
 .env
+.env.*
+!.env.example
 .env.local
 .env.*.local
 
 # Taro / WeChat mini-program
 .project
 .project.tmp
+project.private.config.json
 *.wxapkg
+
+# Disposable architecture spikes
+spikes/
 
 # Misc
 .cache/
