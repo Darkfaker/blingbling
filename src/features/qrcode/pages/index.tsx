@@ -1,6 +1,6 @@
 import { Button, Canvas, Text, Textarea, View } from '@tarojs/components'
 import Taro, { useDidShow } from '@tarojs/taro'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { createQrMatrix } from '../renderer'
 import { validateQrInput } from '../model'
 import { toAppError } from '@/shared/observability/AppError'
@@ -16,13 +16,15 @@ function drawQr(value: string) {
   context.fillRect(0, 0, SIZE, SIZE)
   const quiet = 6
   const cell = SIZE / (matrix.size + quiet * 2)
-  context.setFillStyle('rgba(255, 123, 156, 0.92)')
+  // 主体深色（紫蓝系，符合新海诚色）
+  context.setFillStyle('rgba(31, 35, 71, 0.92)')
   matrix.dark.forEach((row, y) =>
     row.forEach((dark, x) => {
       if (dark) context.fillRect((x + quiet) * cell, (y + quiet) * cell, Math.ceil(cell), Math.ceil(cell))
     }),
   )
-  context.setFillStyle('#D4607A')
+  // 三角定位点（薄荷青主色）
+  context.setFillStyle('#2D3D6B')
   const positions: Array<[number, number]> = [
     [quiet, quiet],
     [matrix.size - 7 + quiet, quiet],
@@ -90,7 +92,7 @@ export default function QrCodePage() {
         return
       }
       await Taro.saveImageToPhotosAlbum({ filePath: result.tempFilePath })
-      await Taro.showToast({ title: '已保存到相册 ✨', icon: 'success' })
+      await Taro.showToast({ title: '已保存到相册', icon: 'success' })
     } catch (cause) {
       await Taro.showToast({ title: toAppError(cause).userMessage, icon: 'none' })
     }
@@ -105,7 +107,7 @@ export default function QrCodePage() {
           className='qr-input'
           value={text}
           onInput={(e) => setText(e.detail.value)}
-          placeholder='输入文字或链接…'
+          placeholder='把文字或链接放在这里…'
           placeholderClass='qr-input-placeholder'
         />
         <View className='qr-input-footer'>
@@ -128,8 +130,10 @@ export default function QrCodePage() {
             </View>
           ) : (
             <View className='qr-placeholder'>
-              <Text className='qr-placeholder-icon'>✨</Text>
-              <Text className='qr-placeholder-text'>{message || error || '在这里，文字会变成魔法阵'}</Text>
+              <View className='qr-placeholder-icon'>
+                <Text>QR</Text>
+              </View>
+              <Text className='qr-placeholder-text'>{message || error || '在这里，文字会变成一条通道'}</Text>
             </View>
           )}
         </View>
@@ -142,8 +146,7 @@ export default function QrCodePage() {
           hoverClass='qr-action--hover'
           onClick={save}
         >
-          <Text className='qr-action-icon'>🌸</Text>
-          <Text>保存到相册</Text>
+          保存到相册
         </Button>
         <Button
           className='secondary-button'
@@ -151,16 +154,14 @@ export default function QrCodePage() {
           hoverClass='qr-action--hover'
           onClick={copy}
         >
-          <Text className='qr-action-icon'>📋</Text>
-          <Text>复制原文</Text>
+          复制原文
         </Button>
       </View>
 
       <View className='qr-tip-row'>
-        <Text className='qr-tip-dot'>✦</Text>
+        <Text className='qr-tip-dot'>·</Text>
         <Text className='qr-tip'>内容只在本机生成，不会上传。</Text>
       </View>
     </View>
   )
 }
-
