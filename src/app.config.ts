@@ -3,13 +3,12 @@ import { appPages } from './routes'
 export default defineAppConfig({
   pages: [...appPages],
   window: {
-    navigationBarBackgroundColor: '#FEF9F4',
-    navigationBarTextStyle: 'black',
-    navigationBarTitleText: 'Komorebi 🌸',
-    backgroundColor: '#FEF9F4',
-    backgroundTextStyle: 'dark',
+    navigationBarBackgroundColor: '#FFB5A7',
+    navigationBarTextStyle: 'white',
+    navigationBarTitleText: 'Komorebi',
+    backgroundColor: '#FFB5A7',
+    backgroundTextStyle: 'light',
     enablePullDownRefresh: false,
   },
   lazyCodeLoading: 'requiredComponents',
 })
-

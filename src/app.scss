@@ -1,54 +1,78 @@
+/* ===========================================================================
+ * bbl · Komorebi 日漫风（新海诚色 + 玻璃拟态 + 贴纸描边）
+ * 配套设计：docs/superpowers/specs/2026-07-03-anime-ui-redesign.md
+ * 颜色系统见 spec §2；圆角/描边/阴影见 spec §4
+ * ===========================================================================
+ */
+
 page {
-  /* ===== Surface tokens ===== */
-  --bg: #FEF9F4;
-  --bg-grad: linear-gradient(180deg, #FCE4EC 0%, #FEF9F4 320rpx);
-  --surface: #ffffff;
-  --surface-soft: #FFF5F7;
-  --surface-translucent: rgba(255, 255, 255, 0.78);
-  --line: rgba(184, 160, 136, 0.12);
-  --line-strong: rgba(184, 160, 136, 0.20);
+  /* ===== Sky palette (spec §2.1) ===== */
+  --sky-1: #FFD8A8;
+  --sky-2: #FFB5A7;
+  --sky-3: #C9A0DC;
+  --sky-4: #6B8DD6;
+  --sky-5: #2D3D6B;
 
-  /* ===== Text tokens ===== */
-  --text: #4A3728;
-  --text-soft: #6B5040;
-  --muted: #B8A088;
-  --muted-2: #D4C4B0;
+  /* ===== Surface ===== */
+  --surface: #FFFFFF;
+  --surface-soft: #FFF6F0;
+  --surface-glass: rgba(255, 255, 255, 0.62);
+  --surface-glass-strong: rgba(255, 255, 255, 0.78);
 
-  /* ===== Brand tokens ===== */
-  --primary: #FF7B9C;
-  --primary-600: #E8618C;
-  --primary-50: #FFF0F5;
-  --primary-100: #FFE4EC;
-  --primary-grad: linear-gradient(135deg, #FF7B9C 0%, #FFB3C6 100%);
-  --primary-grad-soft: linear-gradient(135deg, rgba(255, 123, 156, 0.08) 0%, rgba(255, 179, 198, 0.08) 100%);
-  --accent: #A8D8EA;
-  --accent-grad: linear-gradient(135deg, #FFD93D 0%, #FFB3C6 100%);
+  /* ===== Ink / text (spec §2.1) ===== */
+  --ink: #1F2347;
+  --ink-soft: #4A4F7A;
+  --ink-muted: #8A8FB0;
+  --ink-faint: #C5C9DE;
 
-  /* ===== Phase tokens (pomodoro) ===== */
-  --focus: #FF6B6B;
-  --focus-grad: linear-gradient(135deg, #FF8A80 0%, #FF6B6B 100%);
-  --break: #81C784;
-  --break-grad: linear-gradient(135deg, #A5D6A7 0%, #81C784 100%);
+  /* ===== Lines ===== */
+  --line: rgba(31, 35, 71, 0.08);
+  --line-strong: rgba(31, 35, 71, 0.16);
+  --line-sticker: rgba(255, 255, 255, 0.5);
 
-  /* ===== Status tokens ===== */
-  --danger: #E8618C;
-  --danger-50: #FFF0F5;
-  --success: #81C784;
-  --warning: #FFB74D;
-  --warning-50: #FFF8F0;
+  /* ===== Accents (spec §2.1) ===== */
+  --accent-sun: #FF8E72;
+  --accent-sakura: #FF7BA9;
+  --accent-leaf: #7BC8A4;
+  --accent-mint: #6FCFD5;
+  --accent-iris: #9F7BD3;
 
-  /* ===== Shadow tokens ===== */
-  --shadow-xs: 0 1rpx 2rpx rgba(255, 123, 156, 0.06);
-  --shadow-sm: 0 4rpx 12rpx rgba(255, 123, 156, 0.08), 0 1rpx 2rpx rgba(200, 180, 160, 0.06);
-  --shadow-md: 0 12rpx 32rpx -8rpx rgba(255, 123, 156, 0.16), 0 4rpx 12rpx rgba(200, 180, 160, 0.10);
-  --shadow-lg: 0 24rpx 48rpx -12rpx rgba(255, 123, 156, 0.28), 0 8rpx 20rpx rgba(200, 180, 160, 0.12);
-  --shadow-card: 0 6rpx 24rpx -6rpx rgba(255, 123, 156, 0.14), 0 2rpx 6rpx rgba(200, 180, 160, 0.06);
+  /* ===== Tool themes (spec §2.2) ===== */
+  --tool-todos: #FF8E72;
+  --tool-todos-soft: #FFD8A8;
+  --tool-pomodoro: #E85D75;
+  --tool-pomodoro-soft: #FF7BA9;
+  --tool-qrcode: #6FCFD5;
+  --tool-qrcode-soft: #7BC8A4;
+  --tool-reading: #9F7BD3;
+  --tool-reading-soft: #C9A0DC;
 
-  /* ===== Radius tokens ===== */
-  --r-sm: 12rpx;
-  --r-md: 20rpx;
-  --r-lg: 28rpx;
-  --r-xl: 36rpx;
+  /* ===== Status ===== */
+  --danger: #E85D75;
+  --danger-soft: rgba(232, 93, 117, 0.12);
+  --success: #5BB87A;
+  --warning: #E8A53F;
+  --warning-soft: rgba(232, 165, 63, 0.14);
+
+  /* ===== Sky gradients (spec §2.3 时段色温) ===== */
+  --bg-sky-morning: linear-gradient(180deg, #FFB5A7 0%, #C9A0DC 60%, #6B8DD6 100%);
+  --bg-sky-noon: linear-gradient(180deg, #FFE9C8 0%, #FFD8A8 40%, #FFB5A7 100%);
+  --bg-sky-dusk: linear-gradient(180deg, #FF8E72 0%, #C9A0DC 55%, #6B8DD6 100%);
+  --bg-sky-night: linear-gradient(180deg, #6B8DD6 0%, #2D3D6B 100%);
+  --bg-sky: var(--bg-sky-dusk);
+
+  /* ===== Shadows (spec §4.3) ===== */
+  --shadow-xs: 0 2rpx 8rpx -2rpx rgba(31, 35, 71, 0.06);
+  --shadow-sm: 0 8rpx 24rpx -8rpx rgba(31, 35, 71, 0.10);
+  --shadow-md: 0 16rpx 40rpx -12rpx rgba(31, 35, 71, 0.14);
+  --shadow-lg: 0 24rpx 48rpx -12rpx rgba(31, 35, 71, 0.20);
+  --shadow-sticker: 0 4rpx 12rpx -4rpx rgba(31, 35, 71, 0.12);
+
+  /* ===== Radius (spec §4.1) ===== */
+  --r-sm: 16rpx;
+  --r-md: 24rpx;
+  --r-lg: 32rpx;
+  --r-xl: 40rpx;
   --r-pill: 999rpx;
 
   /* ===== Spacing scale ===== */
@@ -59,20 +83,28 @@ page {
   --sp-5: 40rpx;
   --sp-6: 56rpx;
 
-  background: var(--bg);
-  background-image: var(--bg-grad);
+  /* ===== Sticker (贴纸) outline ===== */
+  --sticker-stroke: 1.5rpx solid rgba(255, 255, 255, 0.5);
+
+  background: var(--bg-sky);
   background-attachment: fixed;
-  color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', 'Segoe UI', sans-serif;
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
   font-size: 28rpx;
-  line-height: 1.5;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
 }
 
+/* 时段色温切换（home 在 useDidShow 时设置 data-phase） */
+page[data-phase='morning'] { --bg-sky: var(--bg-sky-morning); }
+page[data-phase='noon']    { --bg-sky: var(--bg-sky-noon); }
+page[data-phase='dusk']    { --bg-sky: var(--bg-sky-dusk); }
+page[data-phase='night']   { --bg-sky: var(--bg-sky-night); }
+
 button::after { border: 0; }
-button { padding: 0; transition: transform 0.18s ease, opacity 0.18s ease, box-shadow 0.18s ease; }
+button { padding: 0; transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease; }
 button[disabled] { opacity: 0.5; }
-button:active { transform: scale(0.98); }
+button:active { transform: translateY(2rpx) scale(0.98); }
 
 input, textarea { background: transparent; }
 
@@ -82,60 +114,94 @@ input, textarea { background: transparent; }
   min-height: 100vh;
   padding: 36rpx 32rpx calc(64rpx + env(safe-area-inset-bottom));
 }
+
+/* spec §3.3 章节小标题：日漫感小色块 + 描边 */
 .section-title {
   display: flex;
   align-items: center;
   gap: 16rpx;
   margin: 56rpx 0 24rpx;
   font-size: 26rpx;
-  font-weight: 600;
-  color: var(--muted);
-  letter-spacing: 0.5rpx;
+  font-weight: 700;
+  color: var(--ink-soft);
+  letter-spacing: 1rpx;
   position: relative;
   z-index: 1;
 }
 .section-title::before {
   content: '';
-  width: 28rpx;
-  height: 26rpx;
-  border-radius: 6rpx 12rpx 6rpx 12rpx;
-  background: var(--primary-grad);
-  box-shadow: 0 2rpx 8rpx rgba(255, 123, 156, 0.3);
+  width: 12rpx;
+  height: 24rpx;
+  border-radius: 6rpx 10rpx 6rpx 10rpx;
+  background: linear-gradient(135deg, var(--accent-sun) 0%, var(--accent-sakura) 100%);
+  box-shadow: var(--shadow-sticker), var(--sticker-stroke);
 }
 
-/* ===== Card primitive ===== */
+/* ===== Card primitive (spec §4.2 描边 + §4.3 阴影) ===== */
 .card {
   box-sizing: border-box;
   background: var(--surface);
   border-radius: var(--r-lg);
   padding: 32rpx;
   box-shadow: var(--shadow-sm);
+  border: 1.5rpx solid rgba(255, 255, 255, 0.6);
+  position: relative;
 }
 
-/* ===== Button primitives ===== */
+/* 玻璃态卡片 (spec §4.4) */
+.card-glass {
+  background: var(--surface-glass);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+}
+
+/* ===== Buttons (贴纸形 + 1rpx 高光描边) ===== */
 .primary-button {
-  background: var(--primary-grad);
+  background: linear-gradient(135deg, var(--accent-sun) 0%, var(--accent-sakura) 100%);
   color: #ffffff;
   border-radius: var(--r-pill);
   font-size: 30rpx;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 1rpx;
-  box-shadow: 0 8rpx 22rpx -6rpx rgba(255, 123, 156, 0.48);
+  box-shadow: 0 8rpx 20rpx -6rpx rgba(232, 93, 117, 0.45), inset 0 1rpx 0 rgba(255, 255, 255, 0.4);
+  border: 1.5rpx solid rgba(255, 255, 255, 0.3);
 }
 .secondary-button {
-  background: var(--primary-100);
-  color: var(--primary);
+  background: var(--surface);
+  color: var(--ink);
   border-radius: var(--r-pill);
   font-size: 30rpx;
   font-weight: 600;
+  box-shadow: var(--shadow-sm);
+  border: 1.5rpx solid var(--line-strong);
 }
 .danger-button {
-  background: var(--danger-50);
-  color: var(--primary-600);
+  background: var(--danger-soft);
+  color: var(--danger);
   border-radius: var(--r-pill);
   font-size: 30rpx;
   font-weight: 600;
+  border: 1.5rpx solid rgba(232, 93, 117, 0.25);
 }
 
-.muted { color: var(--muted); }
+.muted { color: var(--ink-muted); }
 
+/* ===== Animations ===== */
+@keyframes sakura-fall {
+  0%   { transform: translate3d(0, -20rpx, 0) rotate(0deg);   opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translate3d(60rpx, 480rpx, 0) rotate(360deg); opacity: 0; }
+}
+@keyframes drift-right {
+  0%   { transform: translate3d(-40rpx, 0, 0); }
+  100% { transform: translate3d(40rpx, -20rpx, 0); }
+}
+@keyframes breathe {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-2rpx); }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.3; }
+}
