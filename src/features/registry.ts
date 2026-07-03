@@ -13,10 +13,10 @@ export interface ToolManifest {
 }
 
 export const tools = [
-  { id: 'todos', title: '待办', description: '记下并完成重要小事', icon: '✓', route: '/features/todos/pages/index', availability: 'ready', dataScope: 'private-cloud' },
-  { id: 'pomodoro', title: '番茄钟', description: '专注一段完整时间', icon: '◷', route: '/features/pomodoro/pages/index', availability: 'ready', dataScope: 'local' },
-  { id: 'qrcode', title: '二维码', description: '把文本变成二维码', icon: '▦', route: '/features/qrcode/pages/index', availability: 'ready', dataScope: 'local' },
-  { id: 'reading', title: '阅读', description: '稍后安静读一点东西', icon: '文', route: '/features/reading/pages/list', availability: 'beta', dataScope: 'public-cloud' },
+  { id: 'todos', title: '待办', description: '像樱花一样轻轻飘落的日常', icon: '🌸', route: '/features/todos/pages/index', availability: 'ready', dataScope: 'private-cloud' },
+  { id: 'pomodoro', title: '番茄钟', description: '和番茄精灵一起专注吧', icon: '🍅', route: '/features/pomodoro/pages/index', availability: 'ready', dataScope: 'local' },
+  { id: 'qrcode', title: '二维码', description: '把文字变成闪亮的魔法阵', icon: '✨', route: '/features/qrcode/pages/index', availability: 'ready', dataScope: 'local' },
+  { id: 'reading', title: '阅读', description: '在树荫下安静地翻阅', icon: '📖', route: '/features/reading/pages/list', availability: 'beta', dataScope: 'public-cloud' },
 ] as const satisfies readonly ToolManifest[]
 
 export function validateTools(items: readonly ToolManifest[]): string[] {
@@ -33,3 +33,4 @@ export function validateTools(items: readonly ToolManifest[]): string[] {
 export function findTool(id: string | null | undefined): ToolManifest | undefined {
   return (tools as readonly ToolManifest[]).find((tool) => tool.id === id && tool.availability !== 'disabled')
 }
+

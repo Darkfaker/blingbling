@@ -9,16 +9,16 @@ const KEY = 'bbl:pomodoro:state:v1'
 const durations = [1, 5, 15, 25, 30, 45, 60]
 
 const phaseLabel: Record<'focus' | 'break', string> = {
-  focus: '专注',
-  break: '休息',
+  focus: '专注时刻',
+  break: '休息时光',
 }
 const phaseHint: Record<'focus' | 'break', string> = {
   focus: '屏蔽干扰，一次只做一件事',
   break: '离开屏幕，让眼睛和大脑放空',
 }
 const phaseEmoji: Record<'focus' | 'break', string> = {
-  focus: '◎',
-  break: '◌',
+  focus: '🍅',
+  break: '🍃',
 }
 
 export default function PomodoroPage() {
@@ -47,7 +47,7 @@ export default function PomodoroPage() {
       notifiedAt.current = state.completedAt
       void Taro.vibrateLong().catch(() => undefined)
       void Taro.showToast({
-        title: state.phase === 'focus' ? '专注完成' : '休息完成',
+        title: state.phase === 'focus' ? '专注完成 ✨' : '休息结束 🌸',
         icon: 'success',
       })
     }
@@ -61,10 +61,10 @@ export default function PomodoroPage() {
   const durationIndex = Math.max(0, durations.indexOf(Math.round(state.durationMs / 60_000)))
 
   const statusBadge = (() => {
-    if (state.status === 'running') return { text: '进行中', kind: 'running' }
-    if (state.status === 'paused') return { text: '已暂停', kind: 'paused' }
-    if (state.status === 'completed') return { text: '本轮结束', kind: 'completed' }
-    return { text: '准备开始', kind: 'idle' }
+    if (state.status === 'running') return { text: '✦ 进行中', kind: 'running' }
+    if (state.status === 'paused') return { text: '✧ 已暂停', kind: 'paused' }
+    if (state.status === 'completed') return { text: '✨ 本轮结束', kind: 'completed' }
+    return { text: '🌸 准备开始', kind: 'idle' }
   })()
 
   return (
@@ -117,7 +117,7 @@ export default function PomodoroPage() {
       <View className='actions'>
         {state.status === 'idle' ? (
           <Button className='primary-button' hoverClass='action--hover' onClick={() => dispatch({ type: 'start', now: Date.now() })}>
-            开始专注
+            🍅 开始专注
           </Button>
         ) : null}
         {state.status === 'running' ? (
@@ -127,7 +127,7 @@ export default function PomodoroPage() {
         ) : null}
         {state.status === 'paused' ? (
           <Button className='primary-button' hoverClass='action--hover' onClick={() => dispatch({ type: 'resume', now: Date.now() })}>
-            继续专注
+            🍅 继续专注
           </Button>
         ) : null}
         {state.status === 'completed' ? (
@@ -138,7 +138,7 @@ export default function PomodoroPage() {
               dispatch({ type: 'next', now: Date.now(), durationMs: state.phase === 'focus' ? 5 * 60_000 : 25 * 60_000 })
             }
           >
-            开始{state.phase === 'focus' ? '休息' : '专注'}
+            开始{state.phase === 'focus' ? '🍃 休息' : '🍅 专注'}
           </Button>
         ) : null}
         {state.status !== 'idle' ? (
@@ -149,9 +149,10 @@ export default function PomodoroPage() {
       </View>
 
       <View className='hint-row'>
-        <Text className='hint-dot'>·</Text>
+        <Text className='hint-dot'>✦</Text>
         <Text className='hint'>退到后台也没关系，回来会按真实时间恢复。</Text>
       </View>
     </View>
   )
 }
+

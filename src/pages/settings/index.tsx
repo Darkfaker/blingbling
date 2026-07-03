@@ -11,7 +11,7 @@ export default function SettingsPage() {
   return (
     <View className='page settings-page'>
       <View className='settings-hero card'>
-        <View className='settings-hero-icon'>⚙</View>
+        <View className='settings-hero-icon'>🌸</View>
         <View className='settings-hero-text'>
           <Text className='settings-hero-title'>设置与隐私</Text>
           <Text className='settings-hero-sub'>小而透明：默认不收集额外信息。</Text>
@@ -42,7 +42,7 @@ export default function SettingsPage() {
       <View className='section-title'>版本</View>
       <View className='card settings-version-card'>
         <View>
-          <Text className='settings-version-name'>BBL</Text>
+          <Text className='settings-version-name'>Komorebi 🌸</Text>
           <Text className='settings-version-tag'>体验版</Text>
         </View>
         <Text className='settings-version-num'>v0.1.0</Text>
@@ -50,3 +50,4 @@ export default function SettingsPage() {
     </View>
   )
 }
+

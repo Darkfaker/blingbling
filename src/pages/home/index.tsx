@@ -10,28 +10,28 @@ const isRecent = (v: unknown): v is { toolId: ToolId; visitedAt: number } =>
   typeof v === 'object' && v !== null && typeof (v as any).toolId === 'string' && typeof (v as any).visitedAt === 'number'
 
 const accentByTool: Record<ToolId, string> = {
-  todos: 'linear-gradient(135deg, #fb7185 0%, #f43f5e 100%)',
-  pomodoro: 'linear-gradient(135deg, #fb923c 0%, #f43f5e 100%)',
-  qrcode: 'linear-gradient(135deg, #38bdf8 0%, #6366f1 100%)',
-  reading: 'linear-gradient(135deg, #2dd4bf 0%, #14b8a6 100%)',
+  todos: 'linear-gradient(135deg, #FFB3C6 0%, #FF7B9C 100%)',
+  pomodoro: 'linear-gradient(135deg, #FFCC80 0%, #FF8A65 100%)',
+  qrcode: 'linear-gradient(135deg, #81D4FA 0%, #CE93D8 100%)',
+  reading: 'linear-gradient(135deg, #A5D6A7 0%, #80CBC4 100%)',
 }
 
 const chipByTool: Record<ToolId, string> = {
-  todos: '记下并完成重要小事',
-  pomodoro: '专注一段完整时间',
-  qrcode: '把文本变成二维码',
-  reading: '稍后安静读一点东西',
+  todos: '收集日常碎片，保持有序',
+  pomodoro: '让番茄精灵陪你专注',
+  qrcode: '把文字变成魔法阵',
+  reading: '树荫下的安静阅读时光',
 }
 
 
 const greeting = (): string => {
   const h = new Date().getHours()
-  if (h < 5) return '夜深了'
-  if (h < 11) return '早上好'
-  if (h < 14) return '中午好'
-  if (h < 18) return '下午好'
-  if (h < 22) return '晚上好'
-  return '夜深了'
+  if (h < 5) return '夜色柔柔的 ✦'
+  if (h < 11) return '元气满满'
+  if (h < 14) return '午后小憩时光'
+  if (h < 18) return '下午好呀'
+  if (h < 22) return '晚风轻轻'
+  return '今夜星光很美 ✧'
 }
 
 const todayLabel = (): string => {
@@ -54,33 +54,33 @@ export default function HomePage() {
       <View className='hero'>
         <View className='hero-top'>
           <View>
-            <Text className='hero-eyebrow'>{todayLabel()}</Text>
+            <Text className='hero-eyebrow'>{todayLabel()}  ✦</Text>
             <Text className='hero-greeting'>{greeting()}，</Text>
-            <Text className='hero-title'>今天，要做点什么？</Text>
+            <Text className='hero-title'>今天想做什么呢？</Text>
           </View>
           <View className='hero-orb' />
         </View>
         <View className='hero-stats'>
           <View className='stat'>
             <Text className='stat-num'>{tools.length}</Text>
-            <Text className='stat-label'>个工具</Text>
+            <Text className='stat-label'>个小工具</Text>
           </View>
           <View className='stat-divider' />
           <View className='stat'>
             <Text className='stat-num'>{tools.filter((t) => t.availability === 'ready').length}</Text>
-            <Text className='stat-label'>已就绪</Text>
+            <Text className='stat-label'>已开放</Text>
           </View>
           <View className='stat-divider' />
           <View className='stat'>
-            <Text className='stat-num'>0</Text>
-            <Text className='stat-label'>同步中</Text>
+            <Text className='stat-num'>✨</Text>
+            <Text className='stat-label'>进行中</Text>
           </View>
         </View>
       </View>
 
       {recent ? (
         <>
-          <View className='section-title'>继续使用</View>
+          <View className='section-title'>刚刚用过的</View>
           <View
             className='recent-card card'
             style={{ background: accentByTool[recent.id] }}
@@ -94,14 +94,14 @@ export default function HomePage() {
               <Text className='recent-desc'>{chipByTool[recent.id]}</Text>
             </View>
             <View className='recent-cta'>
-              <Text className='recent-cta-text'>打开</Text>
+              <Text className='recent-cta-text'>进入</Text>
               <Text className='recent-cta-arrow'>→</Text>
             </View>
           </View>
         </>
       ) : null}
 
-      <View className='section-title'>全部工具</View>
+      <View className='section-title'>我的工具箱</View>
       <View className='grid'>
         {tools.map((tool) => (
           <View
@@ -127,11 +127,12 @@ export default function HomePage() {
 
       <View className='footer'>
         <View className='footer-pill' onClick={() => void Taro.navigateTo({ url: '/pages/settings/index' })}>
-          <Text className='footer-pill-icon'>⚙</Text>
+          <Text className='footer-pill-icon'>🌸</Text>
           <Text className='footer-pill-text'>设置与隐私</Text>
         </View>
-        <Text className='footer-version'>v0.1.0 · 体验版</Text>
+        <Text className='footer-version'>v0.1.0 · komorebi 体验版</Text>
       </View>
     </View>
   )
 }
+

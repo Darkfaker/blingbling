@@ -9,17 +9,17 @@ import './reading.scss'
 
 const accentBySource = (source: string): string => {
   const map: Record<string, string> = {
-    HackerNews: 'linear-gradient(135deg, #fb923c 0%, #f43f5e 100%)',
-    GitHub: 'linear-gradient(135deg, #1f2937 0%, #475569 100%)',
-    Apple: 'linear-gradient(135deg, #38bdf8 0%, #6366f1 100%)',
-    Example: 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)',
+    HackerNews: 'linear-gradient(135deg, #FFCC80 0%, #FF8A65 100%)',
+    GitHub: 'linear-gradient(135deg, #6B5040 0%, #B8A088 100%)',
+    Apple: 'linear-gradient(135deg, #81D4FA 0%, #CE93D8 100%)',
+    Example: 'linear-gradient(135deg, #FFB3C6 0%, #FF7B9C 100%)',
   }
-  return map[source] ?? 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)'
+  return map[source] ?? 'linear-gradient(135deg, #FFB3C6 0%, #FF7B9C 100%)'
 }
 
 const sourceInitial = (source: string): string => {
   const trimmed = source.replace(/[^A-Za-z一-龥]/g, '')
-  if (!trimmed) return '文'
+  if (!trimmed) return '📖'
   return trimmed[0]!.toUpperCase()
 }
 
@@ -60,10 +60,10 @@ export default function ReadingListPage() {
         <View className='reading-hero-top'>
           <View>
             <Text className='reading-eyebrow'>每日精选</Text>
-            <Text className='reading-title'>安静地读一点</Text>
+            <Text className='reading-title'>树荫下的阅读 ✦</Text>
             <Text className='reading-sub'>技术、设计与思考</Text>
           </View>
-          <View className='reading-hero-icon'>文</View>
+          <View className='reading-hero-icon'>📖</View>
         </View>
       </View>
 
@@ -94,7 +94,7 @@ export default function ReadingListPage() {
         <StateView kind='error' message={error} onRetry={load} />
       ) : visible.length === 0 ? (
         <View className='empty card'>
-          <Text className='empty-icon'>★</Text>
+          <Text className='empty-icon'>📚</Text>
           <Text className='empty-title'>{onlyFavorites ? '还没有收藏' : '暂时没有文章'}</Text>
           <Text className='empty-desc'>{onlyFavorites ? '在详情页点击收藏，把喜欢的内容留下。' : '下拉刷新，或稍后再来看看。'}</Text>
         </View>
@@ -114,7 +114,7 @@ export default function ReadingListPage() {
                     <Text>{sourceInitial(article.source)}</Text>
                   </View>
                   <Text className='article-source'>{article.source}</Text>
-                  {isFav ? <Text className='article-fav'>★ 已收藏</Text> : <View className='article-fav-spacer' />}
+                  {isFav ? <Text className='article-fav'>⭐ 已收藏</Text> : <View className='article-fav-spacer' />}
                 </View>
                 <Text className='article-title'>{article.title}</Text>
                 <Text className='article-summary'>{article.summary || '打开查看原文链接'}</Text>
@@ -130,3 +130,4 @@ export default function ReadingListPage() {
     </View>
   )
 }
+

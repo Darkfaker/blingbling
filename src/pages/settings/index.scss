@@ -6,10 +6,10 @@
   align-items: center;
   gap: 24rpx;
   padding: 32rpx !important;
-  background: linear-gradient(135deg, #1f2937 0%, #334155 100%) !important;
+  background: linear-gradient(145deg, #D4C4B0 0%, #B8A088 60%, #8B7B6B 100%) !important;
   color: #ffffff;
   border: 0 !important;
-  box-shadow: 0 16rpx 36rpx -12rpx rgba(15, 23, 42, 0.3) !important;
+  box-shadow: 0 16rpx 36rpx -12rpx rgba(184, 160, 136, 0.4) !important;
 }
 .settings-hero-icon {
   display: flex;
@@ -18,12 +18,12 @@
   width: 96rpx;
   height: 96rpx;
   border-radius: 28rpx;
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.22);
   font-size: 48rpx;
 }
 .settings-hero-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4rpx; }
 .settings-hero-title { font-size: 36rpx; font-weight: 700; }
-.settings-hero-sub { font-size: 24rpx; opacity: 0.78; }
+.settings-hero-sub { font-size: 24rpx; opacity: 0.82; }
 
 /* ===== Privacy card ===== */
 .settings-card { padding: 24rpx 28rpx !important; }
@@ -34,12 +34,13 @@
   padding: 12rpx 0;
 }
 .settings-bullet {
-  flex: 0 0 12rpx;
-  width: 12rpx;
-  height: 12rpx;
+  flex: 0 0 14rpx;
+  width: 14rpx;
+  height: 14rpx;
   margin-top: 16rpx;
-  border-radius: 50%;
+  border-radius: 4rpx 8rpx 4rpx 8rpx;
   background: var(--primary-grad);
+  box-shadow: 0 2rpx 6rpx rgba(255, 123, 156, 0.3);
 }
 .settings-row-text { flex: 1; font-size: 26rpx; line-height: 1.6; color: var(--text-soft); }
 
@@ -53,10 +54,10 @@
   align-items: center;
   justify-content: space-between;
   padding: 28rpx 32rpx !important;
-  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
+  background: linear-gradient(145deg, #FFB3C6 0%, #FF7B9C 60%, #E8B4F0 100%) !important;
   color: #ffffff;
   border: 0 !important;
-  box-shadow: 0 16rpx 36rpx -12rpx rgba(79, 70, 229, 0.4) !important;
+  box-shadow: 0 16rpx 36rpx -12rpx rgba(255, 123, 156, 0.45) !important;
 }
 .settings-version-card > View { display: flex; flex-direction: column; gap: 4rpx; }
 .settings-version-name { font-size: 32rpx; font-weight: 700; }
@@ -65,7 +66,7 @@
   margin-top: 4rpx;
   padding: 4rpx 12rpx;
   border-radius: 999rpx;
-  background: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.28);
   color: #ffffff;
   font-size: 20rpx;
   font-weight: 600;
@@ -78,3 +79,4 @@
   font-variant-numeric: tabular-nums;
   opacity: 0.95;
 }
+

@@ -6,8 +6,8 @@
   min-height: 100vh;
   transition: background 0.4s ease;
 }
-.pomodoro-page.phase-focus { background: linear-gradient(180deg, #fff1f3 0%, #f4f5fb 480rpx); }
-.pomodoro-page.phase-break { background: linear-gradient(180deg, #ecfdf7 0%, #f4f5fb 480rpx); }
+.pomodoro-page.phase-focus { background: linear-gradient(180deg, #FFF0F5 0%, #FEF9F4 480rpx); }
+.pomodoro-page.phase-break { background: linear-gradient(180deg, #F0F8F1 0%, #FEF9F4 480rpx); }
 
 /* ===== Status pill ===== */
 .pomodoro-topline {
@@ -50,7 +50,7 @@
   width: 80rpx;
   height: 80rpx;
   border-radius: 24rpx;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.7);
   font-size: 40rpx;
   color: var(--ring);
   box-shadow: var(--shadow-sm);
@@ -69,8 +69,8 @@
 }
 
 /* ===== Progress ring ===== */
-.pomodoro-page.phase-focus { --ring: #f43f5e; --ring-track: #ffe4e9; }
-.pomodoro-page.phase-break { --ring: #14b8a6; --ring-track: #d1faf3; }
+.pomodoro-page.phase-focus { --ring: #FF6B6B; --ring-track: #FFE8E5; }
+.pomodoro-page.phase-break { --ring: #81C784; --ring-track: #E8F5E9; }
 
 .ring {
   position: relative;
@@ -82,7 +82,7 @@
   align-items: center;
   justify-content: center;
   margin: 16rpx 0 40rpx;
-  box-shadow: 0 24rpx 56rpx -16rpx var(--ring-track), inset 0 0 0 2rpx rgba(255, 255, 255, 0.6);
+  box-shadow: 0 24rpx 56rpx -16rpx var(--ring-track), inset 0 0 0 2rpx rgba(255, 255, 255, 0.7);
   transition: background 0.2s linear, box-shadow 0.4s ease;
 }
 .ring::after {
@@ -104,7 +104,7 @@
   align-items: baseline;
   justify-content: center;
   flex-wrap: wrap;
-  box-shadow: inset 0 4rpx 16rpx rgba(15, 23, 42, 0.04);
+  box-shadow: inset 0 4rpx 16rpx rgba(200, 160, 140, 0.06);
 }
 .timer {
   font-size: 120rpx;
@@ -170,3 +170,4 @@
   font-size: 24rpx;
 }
 .hint-dot { color: var(--muted-2); }
+

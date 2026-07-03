@@ -1,8 +1,9 @@
 import { Button, Canvas, Text, Textarea, View } from '@tarojs/components'
-import Taro from '@tarojs/taro'
-import { useEffect, useRef, useState } from 'react'
+import Taro, { useDidShow } from '@tarojs/taro'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { createQrMatrix } from '../renderer'
 import { validateQrInput } from '../model'
+import { toAppError } from '@/shared/observability/AppError'
 import './index.scss'
 
 const CANVAS_ID = 'bbl-qrcode'
@@ -11,22 +12,17 @@ const SIZE = 640
 function drawQr(value: string) {
   const matrix = createQrMatrix(value)
   const context = Taro.createCanvasContext(CANVAS_ID)
-  // Rounded background
   context.setFillStyle('#ffffff')
   context.fillRect(0, 0, SIZE, SIZE)
-
-  // Gradient dots via two layers for visual interest
   const quiet = 6
   const cell = SIZE / (matrix.size + quiet * 2)
-  // First pass: light brand color
-  context.setFillStyle('rgba(79, 70, 229, 0.92)')
+  context.setFillStyle('rgba(255, 123, 156, 0.92)')
   matrix.dark.forEach((row, y) =>
     row.forEach((dark, x) => {
       if (dark) context.fillRect((x + quiet) * cell, (y + quiet) * cell, Math.ceil(cell), Math.ceil(cell))
     }),
   )
-  // Highlight 3 finder patterns with deeper color
-  context.setFillStyle('#1f1d8b')
+  context.setFillStyle('#D4607A')
   const positions: Array<[number, number]> = [
     [quiet, quiet],
     [matrix.size - 7 + quiet, quiet],
@@ -71,6 +67,8 @@ export default function QrCodePage() {
     }
   }, [text, valid, message])
 
+  useDidShow(() => void 0)
+
   const copy = () => valid && void Taro.setClipboardData({ data: text })
 
   const save = async () => {
@@ -78,48 +76,43 @@ export default function QrCodePage() {
     try {
       const result = await Taro.canvasToTempFilePath({
         canvasId: CANVAS_ID,
-        width: SIZE,
-        height: SIZE,
         destWidth: 1024,
         destHeight: 1024,
-        fileType: 'png',
-        quality: 1,
       })
-      await Taro.saveImageToPhotosAlbum({ filePath: result.tempFilePath })
-      await Taro.showToast({ title: '已保存到相册', icon: 'success' })
-    } catch (cause) {
-      const errMessage = cause instanceof Error ? cause.message : String(cause)
-      if (errMessage.includes('auth') || errMessage.includes('authorize')) {
-        const confirm = await Taro.showModal({
+      const auth = await Taro.getSetting()
+      if (auth.authSetting['scope.writePhotosAlbum'] === false) {
+        await Taro.showModal({
           title: '需要相册权限',
-          content: '请在设置中允许保存图片到相册。',
-          confirmText: '去设置',
+          content: '请在设置中允许访问相册以保存二维码。',
+          confirmText: '前往设置',
+          success: (modal) => { if (modal.confirm) void Taro.openSetting() },
         })
-        if (confirm.confirm) await Taro.openSetting()
-      } else {
-        await Taro.showToast({ title: '保存失败，请重试', icon: 'none' })
+        return
       }
+      await Taro.saveImageToPhotosAlbum({ filePath: result.tempFilePath })
+      await Taro.showToast({ title: '已保存到相册 ✨', icon: 'success' })
+    } catch (cause) {
+      await Taro.showToast({ title: toAppError(cause).userMessage, icon: 'none' })
     }
   }
 
-  const byteState = bytes > 500 ? 'over' : bytes > 400 ? 'warn' : 'ok'
+  const byteClass = bytes === 0 ? '' : bytes <= 300 ? 'byte-pill--ok' : bytes <= 500 ? 'byte-pill--warn' : 'byte-pill--over'
 
   return (
     <View className='page qr-page'>
       <View className='qr-input-card card'>
         <Textarea
           className='qr-input'
-          maxlength={600}
-          placeholder='输入文字或网址，例：https://example.com'
-          placeholderClass='qr-input-placeholder'
           value={text}
           onInput={(e) => setText(e.detail.value)}
+          placeholder='输入文字或链接…'
+          placeholderClass='qr-input-placeholder'
         />
         <View className='qr-input-footer'>
-          <View className={`byte-pill byte-pill--${byteState}`}>
+          <View className={`byte-pill ${byteClass}`}>
             <Text className='byte-num'>{bytes}</Text>
             <Text className='byte-divider'>/</Text>
-            <Text className='byte-max'>500 字节</Text>
+            <Text>500 字节</Text>
           </View>
         </View>
       </View>
@@ -135,8 +128,8 @@ export default function QrCodePage() {
             </View>
           ) : (
             <View className='qr-placeholder'>
-              <Text className='qr-placeholder-icon'>▦</Text>
-              <Text className='qr-placeholder-text'>{message || error || '二维码会出现在这里'}</Text>
+              <Text className='qr-placeholder-icon'>✨</Text>
+              <Text className='qr-placeholder-text'>{message || error || '在这里，文字会变成魔法阵'}</Text>
             </View>
           )}
         </View>
@@ -149,7 +142,7 @@ export default function QrCodePage() {
           hoverClass='qr-action--hover'
           onClick={save}
         >
-          <Text className='qr-action-icon'>↓</Text>
+          <Text className='qr-action-icon'>🌸</Text>
           <Text>保存到相册</Text>
         </Button>
         <Button
@@ -158,15 +151,16 @@ export default function QrCodePage() {
           hoverClass='qr-action--hover'
           onClick={copy}
         >
-          <Text className='qr-action-icon'>⎘</Text>
+          <Text className='qr-action-icon'>📋</Text>
           <Text>复制原文</Text>
         </Button>
       </View>
 
       <View className='qr-tip-row'>
-        <Text className='qr-tip-dot'>·</Text>
+        <Text className='qr-tip-dot'>✦</Text>
         <Text className='qr-tip'>内容只在本机生成，不会上传。</Text>
       </View>
     </View>
   )
 }
+
