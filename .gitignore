@@ -48,3 +48,6 @@ spikes/
 .cache/
 coverage/
 .tmp/
+
+# llm-wiki-super: agent session continuity (privacy)
+.context/llm-wiki-super/
