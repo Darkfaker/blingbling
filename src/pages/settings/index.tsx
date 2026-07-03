@@ -1,7 +1,8 @@
 import { Button, Text, View } from '@tarojs/components'
 import Taro from '@tarojs/taro'
-
+import { DistantMountains, Horizon } from '@/components/Decor'
 import './index.scss'
+
 export default function SettingsPage() {
   const clear = () => {
     for (const key of Taro.getStorageInfoSync().keys) if (key.startsWith('bbl:')) Taro.removeStorageSync(key)
@@ -10,11 +11,20 @@ export default function SettingsPage() {
 
   return (
     <View className='page settings-page'>
+      {/* Hero (远山 + 小屋) */}
       <View className='settings-hero card'>
-        <View className='settings-hero-icon'>🌸</View>
-        <View className='settings-hero-text'>
-          <Text className='settings-hero-title'>设置与隐私</Text>
-          <Text className='settings-hero-sub'>小而透明：默认不收集额外信息。</Text>
+        <View className='settings-hero-bg'>
+          <DistantMountains />
+        </View>
+        <View className='settings-hero-top'>
+          <View className='settings-hero-icon'>
+            <Text>屋</Text>
+          </View>
+          <View className='settings-hero-text'>
+            <Text className='settings-hero-eyebrow'>Komorebi</Text>
+            <Text className='settings-hero-title'>设置与隐私</Text>
+            <Text className='settings-hero-sub'>小而透明：默认不收集额外信息。</Text>
+          </View>
         </View>
       </View>
 
@@ -35,19 +45,27 @@ export default function SettingsPage() {
       </View>
 
       <View className='section-title'>本地数据</View>
-      <Button className='danger-button' hoverClass='action--hover' onClick={clear}>
-        清理本地缓存
-      </Button>
+      <View className='settings-clear-wrap'>
+        <Button className='danger-button settings-clear' hoverClass='action--hover' onClick={clear}>
+          清理本地缓存
+        </Button>
+      </View>
 
       <View className='section-title'>版本</View>
       <View className='card settings-version-card'>
-        <View>
-          <Text className='settings-version-name'>Komorebi 🌸</Text>
-          <Text className='settings-version-tag'>体验版</Text>
+        <View className='settings-version-text'>
+          <Text className='settings-version-name'>Komorebi</Text>
+          <View className='settings-version-tag'>
+            <Text>体验版</Text>
+          </View>
         </View>
         <Text className='settings-version-num'>v0.1.0</Text>
+      </View>
+
+      <View className='settings-footer'>
+        <Horizon />
+        <Text className='settings-footer-text'>在天空下，慢慢做事</Text>
       </View>
     </View>
   )
 }
-
