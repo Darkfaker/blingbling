@@ -1,0 +1,42 @@
+# 建议按以下 commit 顺序分批提交（每个 commit 都是可回滚的小单元）
+
+git add docs/superpowers/specs/2026-07-03-anime-ui-redesign.md \
+        docs/superpowers/plans/2026-07-03-anime-ui-implementation.md
+git commit -m "docs(anime-ui): add redesign spec and implementation plan"
+
+git add src/assets/
+git commit -m "assets(anime-ui): add shinkai-style svg icons and decor (15 files, 14KB)"
+
+git add src/components/Icon.tsx \
+        src/components/Decor.tsx
+git commit -m "feat(components): add inline svg Icon and Decor react components"
+
+git add src/app.scss \
+        src/app.config.ts \
+        src/shared/ui/StateView.tsx \
+        src/shared/ui/state-view.scss
+git commit -m "style(app): refresh global tokens to shinkai palette (sky/glass/sticker)"
+
+git add src/features/registry.ts
+git commit -m "feat(registry): replace emoji with svg icon keys"
+
+git add src/pages/home/
+git commit -m "feat(home): rebuild hero with shinkai sky, avatar and svg decor"
+
+git add src/features/todos/
+git commit -m "style(todos): apply shinkai visual language"
+
+git add src/features/pomodoro/
+git commit -m "style(pomodoro): rebuild ring and buttons in shinkai style"
+
+git add src/features/qrcode/
+git commit -m "style(qrcode): apply shinkai visual language with mint accent"
+
+git add src/features/reading/
+git commit -m "style(reading): rebuild list and detail in shinkai style"
+
+git add src/pages/settings/
+git commit -m "style(settings): apply shinkai visual language with horizon footer"
+
+git add docs/qa/anime-ui-redesign-check.md
+git commit -m "docs(qa): record anime ui visual verification and check results"
