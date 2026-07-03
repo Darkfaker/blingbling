@@ -1,1 +1,1 @@
-export default definePageConfig({ navigationBarTitleText: 'BBL 工具箱' })
+export default definePageConfig({ navigationBarTitleText: 'Komorebi' })
