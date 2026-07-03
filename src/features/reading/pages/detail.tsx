@@ -8,17 +8,17 @@ import './reading.scss'
 
 const accentBySource = (source: string): string => {
   const map: Record<string, string> = {
-    HackerNews: 'linear-gradient(135deg, #FFCC80 0%, #FF8A65 100%)',
-    GitHub: 'linear-gradient(135deg, #6B5040 0%, #B8A088 100%)',
-    Apple: 'linear-gradient(135deg, #81D4FA 0%, #CE93D8 100%)',
-    Example: 'linear-gradient(135deg, #FFB3C6 0%, #FF7B9C 100%)',
+    HackerNews: 'linear-gradient(135deg, #FF8E72 0%, #FFD8A8 100%)',
+    GitHub: 'linear-gradient(135deg, #6B4FA8 0%, #9F7BD3 100%)',
+    Apple: 'linear-gradient(135deg, #6B8DD6 0%, #6FCFD5 100%)',
+    Example: 'linear-gradient(135deg, #FFB5C8 0%, #9F7BD3 100%)',
   }
-  return map[source] ?? 'linear-gradient(135deg, #FFB3C6 0%, #FF7B9C 100%)'
+  return map[source] ?? 'linear-gradient(135deg, #C9A0DC 0%, #9F7BD3 100%)'
 }
 
 const sourceInitial = (source: string): string => {
   const trimmed = source.replace(/[^A-Za-z一-龥]/g, '')
-  if (!trimmed) return '📖'
+  if (!trimmed) return 'R'
   return trimmed[0]!.toUpperCase()
 }
 
@@ -60,6 +60,7 @@ export default function ReadingDetailPage() {
   return (
     <View className='page reading-detail-page'>
       <View className='detail-hero card'>
+        <View className='detail-hero-bar' />
         <View className='detail-source-row'>
           <View className='detail-source-chip' style={{ background: accentBySource(article.source) }}>
             <Text>{sourceInitial(article.source)}</Text>
@@ -69,7 +70,9 @@ export default function ReadingDetailPage() {
         <Text className='detail-title'>{article.title}</Text>
         {article.summary ? <Text className='detail-summary'>{article.summary}</Text> : <Text className='detail-summary muted'>该来源没有提供摘要。</Text>}
         <View className='detail-note-row'>
-          <Text className='detail-note-icon'>i</Text>
+          <View className='detail-note-icon'>
+            <Text>i</Text>
+          </View>
           <Text className='detail-note'>为避免未经许可转载正文，BBL 只保存标题、链接和简短摘要。</Text>
         </View>
       </View>
@@ -80,19 +83,16 @@ export default function ReadingDetailPage() {
           hoverClass='action--hover'
           onClick={() => void Taro.setClipboardData({ data: article.url })}
         >
-          <Text className='action-icon'>🌸</Text>
-          <Text>复制原文链接</Text>
+          复制原文链接
         </Button>
         <Button
           className={favorite ? 'danger-button' : 'secondary-button'}
           hoverClass='action--hover'
           onClick={toggle}
         >
-          <Text className='action-icon'>{favorite ? '⭐' : '☆'}</Text>
-          <Text>{favorite ? '取消收藏' : '收藏'}</Text>
+          {favorite ? '已收藏 · 取消' : '收藏'}
         </Button>
       </View>
     </View>
   )
 }
-
